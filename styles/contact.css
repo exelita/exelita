@@ -1,0 +1,82 @@
+.contact-section {
+    padding: 120px 0 80px;
+    background: var(--background);
+    min-height: calc(100vh - 400px);
+}
+
+.contact-section h1 {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 3rem;
+}
+
+.contact-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.email-link {
+    display: inline-block;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--secondary);
+    text-decoration: none;
+    margin: 1rem 0;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    max-width: 100%;
+}
+
+.contact-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.contact-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.email-link:hover {
+    color: var(--primary);
+}
+
+.response-time {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 100px 1rem 60px;
+    }
+    
+    .contact-card {
+        padding: 2rem 1rem;
+        margin: 0 1rem;
+    }
+    
+    .email-link {
+        font-size: 1.1rem;
+    }
+}
