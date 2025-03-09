@@ -13,11 +13,48 @@ document.addEventListener('DOMContentLoaded', () => {
 // Navbar interactions
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
+    
+    // Make logo clickable to return to top
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.style.cursor = 'pointer';
+        logo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Mobile menu toggle - MOVED OUTSIDE THE NESTED EVENT LISTENER
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const body = document.querySelector('body');
     
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
+    console.log('Setting up hamburger menu');
+    if (hamburger) {
+        console.log('Hamburger element found');
+        hamburger.addEventListener('click', function() {
+            console.log('Hamburger clicked');
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    const navItems = document.querySelectorAll('.nav-links a');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+    });
+    
+    // Add scrolled class to navbar on scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -25,28 +62,7 @@ function initNavbar() {
         }
     });
     
-    // Mobile menu toggle
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            
-            // Accessibility: Update ARIA attributes
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-        });
-    }
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (navLinks.classList.contains('active') && 
-            !navLinks.contains(e.target) && 
-            !hamburger.contains(e.target)) {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-        }
-    });
+    // Remove the nested DOMContentLoaded event listener
 }
 
 // Smooth animations for elements
